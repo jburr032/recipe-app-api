@@ -54,5 +54,14 @@ class ModelTests(TestCase):
 
         # Django allows you to specify what value you want returned
         # when casting to data types - here we are casting the obj
-        # 'tag' to string, so we want the 'name' value to be returned
+        # 'tag' to string (__str__), so we want the 'name' value to be returned
         self.assertEqual(str(tag), tag.name)
+
+    def test_ingredient_str(self):
+        """ Test the ingredient string representation """
+        ingredient = models.Ingredient.objects.create(
+            user=sample_user(),
+            name="Pepper"
+        )
+
+        self.assertEqual(str(ingredient), ingredient.name)
